@@ -2,6 +2,8 @@ import axios from "./axiosInstance";
 
 const apiService = {
   get: async <T>(url: string, config = {}): Promise<T> => {
+    console.log(url, "get");
+
     const response = await axios.get<T>(url, config);
     return response.data;
   },

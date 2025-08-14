@@ -1,4 +1,4 @@
-import { takeEvery } from "redux-saga";
+import { takeEvery } from "@redux-saga/core/effects";
 import { call, put } from "redux-saga/effects";
 import { getUserById, createUser, updateUser, deleteUser } from "./userAPI";
 import {

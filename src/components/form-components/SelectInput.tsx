@@ -5,9 +5,16 @@ interface Props {
   name: string;
   label: string;
   options: { value: string; label: string }[];
+  className?: string;
+  required?: boolean;
+  onChange?: (value: string) => void;
+  value?: string;
+  disabled?: boolean;
+  placeholder?: string;
+  error?: string;
 }
 
-export default function SelectInput({ name, label, options }: Props) {
+export default function SelectInput({ name, label, options, className }: Props) {
   const {
     register,
     formState: { errors },
@@ -22,7 +29,7 @@ export default function SelectInput({ name, label, options }: Props) {
 
       <select
         {...register(name)}
-        className={`border rounded px-3 py-2 w-full transition 
+        className={`${className}border rounded px-3 py-2 w-full transition 
           ${hasError ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-blue-500"}
         `}
       >

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = process.env.REACT_APP_API_BASE_URL || "https://api.example.com";
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 const axiosInstance = axios.create({
   baseURL,
@@ -20,6 +20,17 @@ axiosInstance.interceptors.request.use(
   },
   (error) => {
     // You can handle request errors here (optional)
+    return Promise.reject(error);
+  }
+);
+
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // Auto logout, redirect, or show login modal
+      console.warn("Unauthorized. Logging out...");
+    }
     return Promise.reject(error);
   }
 );
